@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.send("瀏覽全部支出");
+  return res.redirect("/");
 });
 
 router.get("/new", (req, res) => {

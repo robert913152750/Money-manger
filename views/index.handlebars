@@ -1,1 +1,12 @@
-<h2>test test test over over over</h2>
+總金額: {{{totall}}}
+<ul>
+  {{#each records}}
+  <li>
+    {{{this.name}}}
+    日期{{{this.date}}}
+    金額{{{this.amount}}}
+    <button><a href="#">修改</a></button>
+    <button><a href="#">刪除</a></button>
+  </li>
+  {{/each}}
+</ul>
