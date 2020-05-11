@@ -20,6 +20,9 @@ db.once("open", () => {
   console.log("mongodb connected!");
 });
 
+//載入 Record model
+const Record = require("./models/record");
+
 //load routes
 app.use("/", require("./routes/home"));
 
