@@ -1,15 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const Record = require("../models/record");
-
+//主畫面
 router.get("/", (req, res) => {
   return res.redirect("/");
 });
-
+//新增支出頁面
 router.get("/new", (req, res) => {
   return res.render("new");
 });
-
+//新增支出
 router.post("/new", (req, res) => {
   const record = new Record({
     name: req.body.expenseName,
@@ -23,7 +23,7 @@ router.post("/new", (req, res) => {
     return res.redirect("/");
   });
 });
-
+//修改支出頁面
 router.get("/:id/edit", (req, res) => {
   Record.findById(req.params.id)
     .lean()
@@ -32,8 +32,8 @@ router.get("/:id/edit", (req, res) => {
       return res.render("edit", { record: record });
     });
 });
-
-router.post("/:id/edit", (req, res) => {
+//修改支出
+router.put("/:id/", (req, res) => {
   Record.findById(req.params.id, (err, record) => {
     if (err) return console.error(err);
     (record.name = req.body.expenseName),
@@ -46,8 +46,8 @@ router.post("/:id/edit", (req, res) => {
     });
   });
 });
-
-router.post("/:id/delete", (req, res) => {
+//刪除支出
+router.delete("/:id/delete", (req, res) => {
   Record.findById(req.params.id, (err, record) => {
     if (err) return console.error(err);
     record.remove((err) => {

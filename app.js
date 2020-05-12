@@ -12,9 +12,15 @@ const bodyParser = require("body-parser");
 //設定 body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//require method-override
+const methodOverride = require("method-override");
+
 //tell express use handlebars to be template engine and set "main" for defaulted layout
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+//setting method-override
+app.use(methodOverride("_method"));
 
 //setting mongoDB
 mongoose.connect("mongodb://localhost/expense", {
