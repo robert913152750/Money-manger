@@ -6,7 +6,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/new", (req, res) => {
-  res.send("新增支出頁面");
+  return res.render("new");
 });
 
 router.post("/new", (req, res) => {
