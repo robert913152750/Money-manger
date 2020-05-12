@@ -1,16 +1,32 @@
-總金額: {{{totall}}}
-<ul>
-  {{#each records}}
-  <li>
-    {{{this.name}}}
-    日期{{{this.date}}}
-    金額{{{this.amount}}}
-    <button><a href="expense/{{{this._id}}}/edit">修改</a></button>
-    <button><a href="expense/{{{this._id}}}/delete">刪除</a></button>
-  </li>
-  {{/each}}
-</ul>
+<div class="container">
+  總金額: {{{totall}}}
+  <ul class="list group">
 
-<a href="/expense/new">
-  <button type="button" class="btn btn-outline-dark">新增支出</button>
-</a>
+    {{#each records}}
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-auto mr-auto">
+          <h4 style="display: inline;vertical-align: middle;">{{{this.name}}}</h4>
+        </div>
+        <div class="col-auto">
+          日期{{{this.date}}}
+          金額{{{this.amount}}}
+          <a class="btn btn-success" href="expense/{{{this._id}}}/edit">修改</a>
+          <form action="/expense/{{{this._id}}}/delete" method="POST" style="display: inline">
+            <button class="btn btn-danger" type="submit">刪除</button>
+          </form>
+        </div>
+      </div>
+
+    </li>
+    {{/each}}
+    <a href="/expense/new">
+      <button type="button" class="btn btn-outline-dark">新增支出</button>
+    </a>
+  </ul>
+</div>
+
+
+
+
+</div>
