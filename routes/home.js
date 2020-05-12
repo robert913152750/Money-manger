@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
       for (let i = 0; i < records.length; i++) {
         totall += records[i].amount;
       }
-      console.log(totall);
+
       return res.render("index", { records: records, totall: totall });
     });
 });

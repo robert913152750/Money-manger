@@ -6,6 +6,12 @@ const mongoose = require("mongoose");
 //require express-handlebars
 const exphbs = require("express-handlebars");
 
+//require body-parser
+const bodyParser = require("body-parser");
+
+//設定 body-parser
+app.use(bodyParser.urlencoded({ extended: true }));
+
 //tell express use handlebars to be template engine and set "main" for defaulted layout
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
