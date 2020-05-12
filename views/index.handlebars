@@ -5,8 +5,8 @@
     {{{this.name}}}
     日期{{{this.date}}}
     金額{{{this.amount}}}
-    <button><a href="#">修改</a></button>
-    <button><a href="#">刪除</a></button>
+    <button><a href="expense/{{{this._id}}}/edit">修改</a></button>
+    <button><a href="expense/{{{this._id}}}/delete">刪除</a></button>
   </li>
   {{/each}}
 </ul>

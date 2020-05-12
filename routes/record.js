@@ -25,11 +25,26 @@ router.post("/new", (req, res) => {
 });
 
 router.get("/:id/edit", (req, res) => {
-  res.send("修改特定支出的表單");
+  Record.findById(req.params.id)
+    .lean()
+    .exec((err, record) => {
+      if (err) return console.error(err);
+      return res.render("edit", { record: record });
+    });
 });
 
 router.post("/:id/edit", (req, res) => {
-  res.send("修改特定支出");
+  Record.findById(req.params.id, (err, record) => {
+    if (err) return console.error(err);
+    (record.name = req.body.expenseName),
+      (record.date = req.body.expenseDate),
+      (record.category = req.body.expenseSelect);
+    record.amount = req.body.expenseAmount;
+    record.save((err) => {
+      if (err) return console.error(err);
+      return res.redirect("/");
+    });
+  });
 });
 
 router.post("/:id/delete", (req, res) => {
