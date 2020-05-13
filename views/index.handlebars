@@ -16,6 +16,23 @@
     {{#each records}}
     <div class="list-group-item mb-2 border-left-0 border-top-0 border-right-0">
       <div class="row">
+        <span class="m-1" style="color:#ffc107;">
+          {{#if 家居物業}}
+          <i class="fas fa-home fa-2x"></i>
+          {{/if}}
+          {{#if 交通出行}}
+          <i class="fas fa-shuttle-van fa-2x"></i>
+          {{/if}}
+          {{#if 休閒娛樂}}
+          <i class="fas fa-grin-beam fa-2x"></i>
+          {{/if}}
+          {{#if 餐飲食品}}
+          <i class="fas fa-utensils fa-2x"></i>
+          {{/if}}
+          {{#if 其他}}
+          <i class="fas fa-pen fa-2x"></i>
+          {{/if}}
+        </span>
         <div class="col-auto mr-auto">
           <div>
             <h4 class="font-weight-bolder" style="display: inline;vertical-align: middle;">{{{this.name}}}</h4>

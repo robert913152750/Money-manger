@@ -8,10 +8,15 @@ router.get("/", (req, res) => {
     .exec((err, records) => {
       if (err) return console.error(err);
       let totall = 0;
+
+      records.forEach((record) => {
+        const category = record.category;
+        return (record[category] = true);
+      });
+
       for (let i = 0; i < records.length; i++) {
         totall += records[i].amount;
       }
-
       return res.render("index", { records: records, totall: totall });
     });
 });
