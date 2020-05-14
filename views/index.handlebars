@@ -2,6 +2,7 @@
   <div class="row my-3">
     <div class="col mb-3 border-right">
       <h3 class="text-warning text-center font-weight-bolder">收入</h3>
+      <p class="h4 text-center font-weight-bolder">{{{totalIncome}}}</p>
     </div>
     <div class="col mb-3 border-right">
       <h3 class="text-warning text-center font-weight-bolder">支出</h3>
@@ -9,11 +10,16 @@
     </div>
     <div class="col mb-3">
       <h3 class="text-warning text-center font-weight-bolder">結餘</h3>
+      <p class="h4 text-center font-weight-bolder">{{{balance}}}</p>
     </div>
   </div>
 
   <div class="list group">
-    {{#each records}}
+    <div class="m-5">
+      <h3 class="font-weight-bolder">支出</h3>
+    </div>
+
+    {{#each recordsList}}
     <div class="list-group-item mb-2 border-left-0 border-top-0 border-right-0">
       <div class="row">
         <span class="m-1" style="color:#ffc107;">
@@ -53,7 +59,46 @@
       </div>
     </div>
     {{/each}}
+    <div class="m-5">
+      <h3 class="font-weight-bolder">收入</h3>
+    </div>
+    {{# each incomesList}}
+    <div class="list-group-item mb-2 border-left-0 border-top-0 border-right-0">
+      <div class="row">
+        <span class="m-1" style="color:#70db70;">
+          {{#if 薪水}}
+          <i class="fas fa-envelope-open-text fa-2x"></i>
+          {{/if}}
+          {{#if 家人給}}
+          <i class="fas fa-people-carry fa-2x"></i>
+          {{/if}}
+          {{#if 獎金}}
+          <i class="fas fa-money-check-alt fa-2x"></i>
+          {{/if}}
+          {{#if 其他}}
+          <i class="fas fa-funnel-dollar fa-2x"></i>
+          {{/if}}
+        </span>
+        <div class="col-auto mr-auto">
+          <div>
+            <h4 class="font-weight-bolder" style="display: inline;vertical-align: middle;">{{{this.name}}}</h4>
+          </div>
+          <small class="font-weight-bolder">{{{this.date}}}</small>
+        </div>
+        <div class="col-auto m-auto">
+          <p class="text-center font-weight-bolder">{{{this.amount}}}</p>
+        </div>
 
+
+        <div class="col-auto">
+          <a class="btn btn-success font-weight-bolder" href="expense/{{{this._id}}}/edit">修 改</a>
+          <form action="/expense/{{{this._id}}}/delete?_method=DELETE" method="POST" style="display: inline">
+            <button class="btn btn-danger font-weight-bolder" type="submit">刪 除</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {{/each}}
   </div>
 </div>
 <div class="position-fixed m-4 justify-content-end float-right"

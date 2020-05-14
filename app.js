@@ -9,6 +9,9 @@ const exphbs = require("express-handlebars");
 //require body-parser
 const bodyParser = require("body-parser");
 
+//require async
+const async = require("async");
+
 //設定 body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
 
