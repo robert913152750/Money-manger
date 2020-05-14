@@ -33,7 +33,7 @@ router.get("/:id/edit", (req, res) => {
     });
 });
 //修改支出
-router.put("/:id/", (req, res) => {
+router.put("/:id/edit", (req, res) => {
   Record.findById(req.params.id, (err, record) => {
     if (err) return console.error(err);
     (record.name = req.body.expenseName),

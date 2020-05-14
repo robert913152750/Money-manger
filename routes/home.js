@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
     .lean()
     .exec((err, records) => {
       if (err) return console.error(err);
-      let totall = 0;
+      let totalAmount = 0;
 
       records.forEach((record) => {
         const category = record.category;
@@ -15,9 +15,12 @@ router.get("/", (req, res) => {
       });
 
       for (let i = 0; i < records.length; i++) {
-        totall += records[i].amount;
+        totalAmount += records[i].amount;
       }
-      return res.render("index", { records: records, totall: totall });
+      return res.render("index", {
+        records: records,
+        totalAmount: totalAmount,
+      });
     });
 });
 

@@ -1,46 +1,64 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-5">
-      <p>*為必填欄位</p>
-      <p class="font-weight-bold">請修改你的支出</p>
+    <div class="col-2"></div>
+    <div class="col-8">
+      <div class="row text-center">
+
+        <div class="col-sm mb-3">
+          <h4 class="font-weight-bold text-center">修改支出</h4>
+        </div>
+
+      </div>
+      <div class="card p-4">
+        <small class="text-secondary">*為必填</small>
+        <div class="card-body">
+
+          <form action="/expense/{{{record._id}}}/edit?_method=PUT" method="POST">
+            <div class="form-group row justify-content-center">
+              <label for="expenseName">名稱*</label>
+              <div class="col-10">
+                <input type="text" class=" form-control" id="expenseName" name="expenseName" value="{{{record.name}}}">
+              </div>
+            </div>
+            <div class="form-group row justify-content-center">
+              <label for="expenseDate">日期*</label>
+              <div class="col-10">
+                <input type="date" class="form-control" id="expenseDate" name="expenseDate" value="{{{record.date}}}">
+              </div>
+            </div>
+
+            <div class=" form-group row justify-content-center">
+              <label for="expenseSelect">類別*</label>
+              <div class="col-10">
+                <select class="form-control" id="expenseSelect" name="expenseSelect" value="{{{record.category}}}">
+                  <option>家居物業</option>
+                  <option>交通出行</option>
+                  <option>休閒娛樂</option>
+                  <option>餐飲食品</option>
+                  <option>其他</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row justify-content-center">
+              <label for="expenseAmount">金額*</label>
+              <div class="col-10">
+                <input type="number" class="form-control" id="expenseAmount" name="expenseAmount"
+                  value="{{{record.amount}}}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <form action="/expense/{{{record._id}}}?_method=PUT" method="POST">
-      <div class="form-group row">
-        <label for="expenseName">名稱*</label>
-        <div class="col-10">
-          <input type="text" class=" form-control" id="expenseName" name="expenseName" value="{{{record.name}}}">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="expenseDate">日期*</label>
-        <div class="col-10">
-          <input type="date" class="form-control" id="expenseDate" name="expenseDate" value="{{{record.date}}}">
-        </div>
-      </div>
+    <div class="col-2"></div>
 
-      <div class="form-group row">
-        <label for="expenseSelect">類別*</label>
-        <div class="col-10">
-          <select class="form-control" id="expenseSelect" name="expenseSelect" value="{{{record.category}}}">
-            <option>家居物業</option>
-            <option>交通出行</option>
-            <option>休閒娛樂</option>
-            <option>餐飲食品</option>
-            <option>其他</option>
-          </select>
-        </div>
-      </div>
 
-      <div class="form-group row">
-        <label for="expenseAmount">金額*</label>
-        <div class="col-10">
-          <input type="number" class="form-control" id="expenseAmount" name="expenseAmount" value="{{{record.amount}}}">
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary">送出</button>
-    </form>
 
   </div>
 
