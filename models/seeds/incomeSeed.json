@@ -1,0 +1,28 @@
+{
+  "results": [
+    {
+      "name": "5月薪水",
+      "category": "薪水",
+      "date": "2020/5/11",
+      "amount": 22000
+    },
+    {
+      "name": "發票中獎",
+      "category": "獎金",
+      "date": "2020/5/11",
+      "amount": 200
+    },
+    {
+      "name": "媽媽給",
+      "category": "家人給",
+      "date": "2020/5/11",
+      "amount": 10000
+    },
+    {
+      "name": "家具賣出",
+      "category": "其他",
+      "date": "2020/5/11",
+      "amount": 500
+    }
+  ]
+}
