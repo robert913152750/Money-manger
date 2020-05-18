@@ -49,6 +49,7 @@ const Record = require("./models/record");
 app.use("/", require("./routes/home"));
 app.use("/expense", require("./routes/record"));
 app.use("/income", require("./routes/income"));
+app.use("/choose", require("./routes/choose"));
 
 //listen express
 app.listen(3000, () => {
