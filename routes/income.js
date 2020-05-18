@@ -4,9 +4,9 @@ const Income = require("../models/income");
 
 //新增收入頁面
 router.get("/new/income", (req, res) => {
-  return res.render("new");
+  return res.render("newIncome");
 });
-//新增支出
+//新增收入
 router.post("/new", (req, res) => {
   const income = new Income({
     name: req.body.incomeName,
@@ -20,16 +20,16 @@ router.post("/new", (req, res) => {
     return res.redirect("/");
   });
 });
-//修改支出頁面
+//修改收入頁面
 router.get("/:id/edit", (req, res) => {
   Income.findById(req.params.id)
     .lean()
     .exec((err, income) => {
       if (err) return console.error(err);
-      return res.render("edit", { income: income });
+      return res.render("incomeEdit", { income: income });
     });
 });
-//修改支出
+//修改收入
 router.put("/:id/edit", (req, res) => {
   Income.findById(req.params.id, (err, income) => {
     if (err) return console.error(err);
@@ -43,7 +43,7 @@ router.put("/:id/edit", (req, res) => {
     });
   });
 });
-//刪除支出
+//刪除收入
 router.delete("/:id/delete", (req, res) => {
   Income.findById(req.params.id, (err, income) => {
     if (err) return console.error(err);

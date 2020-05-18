@@ -16,7 +16,7 @@
 
   <div class="list group">
     <div class="m-5">
-      <h3 class="font-weight-bolder">支出</h3>
+      <h3 class="font-weight-bolder" style="letter-spacing: 8px">支出</h3>
     </div>
 
     {{#each recordsList}}
@@ -60,7 +60,7 @@
     </div>
     {{/each}}
     <div class="m-5">
-      <h3 class="font-weight-bolder">收入</h3>
+      <h3 class="font-weight-bolder" style="letter-spacing: 8px">收入</h3>
     </div>
     {{# each incomesList}}
     <div class="list-group-item mb-2 border-left-0 border-top-0 border-right-0">
@@ -91,8 +91,8 @@
 
 
         <div class="col-auto">
-          <a class="btn btn-success font-weight-bolder" href="expense/{{{this._id}}}/edit">修 改</a>
-          <form action="/expense/{{{this._id}}}/delete?_method=DELETE" method="POST" style="display: inline">
+          <a class="btn btn-success font-weight-bolder" href="income/{{{this._id}}}/edit">修 改</a>
+          <form action="/income/{{{this._id}}}/delete?_method=DELETE" method="POST" style="display: inline">
             <button class="btn btn-danger font-weight-bolder" type="submit">刪 除</button>
           </form>
         </div>
@@ -103,7 +103,7 @@
 </div>
 <div class="position-fixed m-4 justify-content-end float-right"
   style="bottom: 4.6875rem;position: fixed;z-index: 1035;right: .9375rem;bottom: .9375rem">
-  <a href="/expense/new" style="color:warning" class="float-right">
+  <a href="/choose/event" style="color:warning" class="float-right">
     <span style="color:#ffc107;">
       <i class="fas fa-plus-circle fa-4x"></i>
     </span>
