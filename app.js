@@ -50,6 +50,7 @@ app.use("/", require("./routes/home"));
 app.use("/expense", require("./routes/record"));
 app.use("/income", require("./routes/income"));
 app.use("/choose", require("./routes/choose"));
+app.use("/users", require("./routes/user"));
 
 //listen express
 app.listen(3000, () => {
