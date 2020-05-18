@@ -48,6 +48,8 @@ const Record = require("./models/record");
 //load routes
 app.use("/", require("./routes/home"));
 app.use("/expense", require("./routes/record"));
+app.use("/income", require("./routes/income"));
+
 //listen express
 app.listen(3000, () => {
   console.log("App is running");

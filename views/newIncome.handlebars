@@ -3,43 +3,46 @@
     <div class="col-2"></div>
     <div class="col-8">
       <div class="row text-center">
+
         <div class="col-sm mb-3">
-          <h4 class="font-weight-bold text-center">修改支出</h4>
+          <h4 class="font-weight-bold text-center">新增收入</h4>
         </div>
+
       </div>
       <div class="card p-4">
         <small class="text-secondary">*為必填</small>
         <div class="card-body">
-          <form action="/expense/{{{record._id}}}/edit?_method=PUT" method="POST">
+
+          <form action="/income/new" method="POST">
             <div class="form-group row justify-content-center">
-              <label for="expenseName">名稱*</label>
+              <label for="incomeName">名稱*</label>
               <div class="col-10">
-                <input type="text" class=" form-control" id="expenseName" name="expenseName" value="{{{record.name}}}">
+                <input type="text" class=" form-control" id="incomeName" name="incomeName">
               </div>
             </div>
             <div class="form-group row justify-content-center">
-              <label for="expenseDate">日期*</label>
+              <label for="incomeDate">日期*</label>
               <div class="col-10">
-                <input type="date" class="form-control" id="expenseDate" name="expenseDate" value="{{{record.date}}}">
+                <input type="date" class="form-control" id="incomeDate" name="incomeDate">
               </div>
             </div>
-            <div class=" form-group row justify-content-center">
-              <label for="expenseSelect">類別*</label>
+
+            <div class="form-group row justify-content-center">
+              <label for="incomeSelect">類別*</label>
               <div class="col-10">
-                <select class="form-control" id="expenseSelect" name="expenseSelect" value="{{{record.category}}}">
-                  <option>家居物業</option>
-                  <option>交通出行</option>
-                  <option>休閒娛樂</option>
-                  <option>餐飲食品</option>
+                <select class="form-control" id="incomeSelect" name="incomeSelect">
+                  <option>薪水</option>
+                  <option>家人給</option>
+                  <option>獎金</option>
                   <option>其他</option>
                 </select>
               </div>
             </div>
+
             <div class="form-group row justify-content-center">
-              <label for="expenseAmount">金額*</label>
+              <label for="incomeAmount">金額*</label>
               <div class="col-10">
-                <input type="number" class="form-control" id="expenseAmount" name="expenseAmount"
-                  value="{{{record.amount}}}">
+                <input type="number" class="form-control" id="incomeAmount" name="incomeAmount">
               </div>
             </div>
             <div class="form-group row">
@@ -52,5 +55,10 @@
       </div>
     </div>
     <div class="col-2"></div>
+
+
+
   </div>
+
+
 </div>

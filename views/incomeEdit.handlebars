@@ -10,23 +10,23 @@
       <div class="card p-4">
         <small class="text-secondary">*為必填</small>
         <div class="card-body">
-          <form action="/expense/{{{record._id}}}/edit?_method=PUT" method="POST">
+          <form action="/income/{{{income._id}}}/edit?_method=PUT" method="POST">
             <div class="form-group row justify-content-center">
-              <label for="expenseName">名稱*</label>
+              <label for="incomeName">名稱*</label>
               <div class="col-10">
-                <input type="text" class=" form-control" id="expenseName" name="expenseName" value="{{{record.name}}}">
+                <input type="text" class=" form-control" id="incomeName" name="incomeName" value="{{{income.name}}}">
               </div>
             </div>
             <div class="form-group row justify-content-center">
-              <label for="expenseDate">日期*</label>
+              <label for="incomeDate">日期*</label>
               <div class="col-10">
-                <input type="date" class="form-control" id="expenseDate" name="expenseDate" value="{{{record.date}}}">
+                <input type="date" class="form-control" id="incomeDate" name="incomeDate" value="{{{income.date}}}">
               </div>
             </div>
             <div class=" form-group row justify-content-center">
-              <label for="expenseSelect">類別*</label>
+              <label for="incomeSelect">類別*</label>
               <div class="col-10">
-                <select class="form-control" id="expenseSelect" name="expenseSelect" value="{{{record.category}}}">
+                <select class="form-control" id="incomeSelect" name="incomeSelect" value="{{{income.category}}}">
                   <option>家居物業</option>
                   <option>交通出行</option>
                   <option>休閒娛樂</option>
@@ -36,10 +36,10 @@
               </div>
             </div>
             <div class="form-group row justify-content-center">
-              <label for="expenseAmount">金額*</label>
+              <label for="incomeAmount">金額*</label>
               <div class="col-10">
-                <input type="number" class="form-control" id="expenseAmount" name="expenseAmount"
-                  value="{{{record.amount}}}">
+                <input type="number" class="form-control" id="incomeAmount" name="incomeAmount"
+                  value="{{{income.amount}}}">
               </div>
             </div>
             <div class="form-group row">

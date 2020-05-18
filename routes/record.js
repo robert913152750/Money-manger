@@ -6,9 +6,10 @@ router.get("/", (req, res) => {
   return res.redirect("/");
 });
 //新增支出頁面
-router.get("/new", (req, res) => {
+router.get("/new/record", (req, res) => {
   return res.render("new");
 });
+
 //新增支出
 router.post("/new", (req, res) => {
   const record = new Record({
