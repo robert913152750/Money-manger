@@ -9,9 +9,6 @@ const exphbs = require("express-handlebars");
 //require body-parser
 const bodyParser = require("body-parser");
 
-//require async
-const async = require("async");
-
 //設定 body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -42,8 +39,11 @@ db.once("open", () => {
   console.log("mongodb connected!");
 });
 
-//載入 Record model
+//require Record model
 const Record = require("./models/record");
+
+//require Income model
+const Income = require("./models/income");
 
 //load routes
 app.use("/", require("./routes/home"));
