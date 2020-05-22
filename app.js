@@ -3,17 +3,13 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 
-//require express-handlebars
-const exphbs = require("express-handlebars");
+const exphbs = require("express-handlebars"); //require express-handlebars
 
-//require body-parser
-const bodyParser = require("body-parser");
+const bodyParser = require("body-parser"); //require body-parser
+app.use(bodyParser.urlencoded({ extended: true })); //設定 body-parser
 
-//設定 body-parser
-app.use(bodyParser.urlencoded({ extended: true }));
-
-//require method-override
-const methodOverride = require("method-override");
+const methodOverride = require("method-override"); //require method-override
+const session = require("express-session");
 
 //tell express use handlebars to be template engine and set "main" for defaulted layout
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -38,6 +34,15 @@ db.on("error", () => {
 db.once("open", () => {
   console.log("mongodb connected!");
 });
+
+//session setting
+app.use(
+  session({
+    secret: "udjniwhd5683",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 //require Record model
 const Record = require("./models/record");
