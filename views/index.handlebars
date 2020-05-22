@@ -15,137 +15,147 @@
   </div>
 
   <div class="list group">
-    <div class="row">
-      <div class="col-2 m-5">
-        <h3 class="font-weight-bolder" style="letter-spacing: 8px">支出</h3>
-      </div>
-      <div class="col-5 m-5">
-        {{!-- <form action="/filter" method="POST"> --}}
-
+    <div class="row mt-5">
+      <div class="col"></div>
+      <div class="col">
         <form action="/filter" method="POST">
+          <div class="form-group row">
+            <div class="col">
+              <select class="custom-select font-weight-bolder" name="recordCategorySearch" id="recordCategorySearch"
+                onchange="this.form.submit()">
+                {{#if recordCategorySearch}}
+                <option class="font-weight-bolder">{{{recordCategorySearch}}}</option>
+                {{else}}
+                <option class="font-weight-bolder" selected disabled>篩選支出類別</option>
+                {{/if}}
 
-          <span>支出類別</span>
-          <select name="recordCategorySearch" id="recordCategorySearch">
-            <option class="dropdown-item">全部</option>
-            <option class="dropdown-item"> 家居物業</option>
-            <option class="dropdown-item">交通出行</option>
-            <option class="dropdown-item">休閒娛樂</option>
-            <option class="dropdown-item">餐飲食品</option>
-            <option class="dropdown-item">其他</option>
+                <option class="font-weight-bolder">全部</option>
+                <option class="font-weight-bolder">家居物業</option>
+                <option class="font-weight-bolder">交通出行</option>
+                <option class="font-weight-bolder">休閒娛樂</option>
+                <option class="font-weight-bolder">餐飲食品</option>
+                <option class="font-weight-bolder">其他</option>
 
-          </select>
-          <span>收入類別</span>
-          <select name="incomeCategorySearch" id="incomeCategorySearch">
-            <option class="dropdown-item">全部</option>
-            <option class="dropdown-item">薪水</option>
-            <option class="dropdown-item">家人給</option>
-            <option class="dropdown-item">獎金</option>
-            <option class="dropdown-item">其他</option>
-          </select>
+              </select>
+            </div>
+            <div class="col">
+              <select class="custom-select font-weight-bolder" name="incomeCategorySearch" id="incomeCategorySearch"
+                onchange="this.form.submit()">
+                {{#if incomeCategorySearch}}
+                <option class="font-weight-bolder">{{{incomeCategorySearch}}}</option>
+                {{else}}
+                <option class="font-weight-bolder" selected disabled>篩選收入類別</option>
+                {{/if}}
 
-
-
-          <button type="submit">篩選</button>
-          {{!-- <select id="recordCategorySearch">
-            <option>全部</option>
-            <option>家居物業</option>
-            <option>交通出行</option>
-            <option>休閒娛樂</option>
-            <option>餐飲食品</option>
-            <option>其他</option>
-          </select> --}}
+                <option class="font-weight-bolder">全部</option>
+                <option class="font-weight-bolder">薪水</option>
+                <option class="font-weight-bolder">家人給</option>
+                <option class="font-weight-bolder">獎金</option>
+                <option class="font-weight-bolder">其他</option>
+              </select>
+            </div>
+          </div>
         </form>
-
-        {{!-- <button type="submit">篩 選</button>
-        </form> --}}
       </div>
+      <div class="col"></div>
+
     </div>
 
 
-
-    {{#each recordsList}}
-    <div class="list-group-item mb-2 border-left-0 border-top-0 border-right-0">
-      <div class="row">
-        <span class="m-1" style="color:#ffc107;">
-          {{#if 家居物業}}
-          <i class="fas fa-home fa-2x"></i>
-          {{/if}}
-          {{#if 交通出行}}
-          <i class="fas fa-shuttle-van fa-2x"></i>
-          {{/if}}
-          {{#if 休閒娛樂}}
-          <i class="fas fa-grin-beam fa-2x"></i>
-          {{/if}}
-          {{#if 餐飲食品}}
-          <i class="fas fa-utensils fa-2x"></i>
-          {{/if}}
-          {{#if 其他}}
-          <i class="fas fa-pen fa-2x"></i>
-          {{/if}}
-        </span>
-        <div class="col-auto mr-auto">
-          <div>
-            <h4 class="font-weight-bolder" style="display: inline;vertical-align: middle; letter-spacing: 3px">
-              {{{this.name}}}</h4>
-          </div>
-          <small class="font-weight-bolder">{{{this.date}}}</small>
-        </div>
-        <div class="col-auto m-auto">
-          <p class="text-center font-weight-bolder">{{{this.amount}}}</p>
-        </div>
-
-
-        <div class="col-auto">
-          <a class="btn btn-success font-weight-bolder" href="expense/{{{this._id}}}/edit">修 改</a>
-          <form action="/expense/{{{this._id}}}/delete?_method=DELETE" method="POST" style="display: inline">
-            <button class="btn btn-danger font-weight-bolder" type="submit">刪 除</button>
-          </form>
-        </div>
-      </div>
-    </div>
-    {{/each}}
-    <div class="m-5">
-      <h3 class="font-weight-bolder" style="letter-spacing: 8px">收入</h3>
-    </div>
-    {{# each incomesList}}
-    <div class="list-group-item mb-2 border-left-0 border-top-0 border-right-0">
-      <div class="row">
-        <span class="m-1" style="color:#70db70;">
-          {{#if 薪水}}
-          <i class="fas fa-envelope-open-text fa-2x"></i>
-          {{/if}}
-          {{#if 家人給}}
-          <i class="fas fa-people-carry fa-2x"></i>
-          {{/if}}
-          {{#if 獎金}}
-          <i class="fas fa-money-check-alt fa-2x"></i>
-          {{/if}}
-          {{#if 其他}}
-          <i class="fas fa-funnel-dollar fa-2x"></i>
-          {{/if}}
-        </span>
-        <div class="col-auto mr-auto">
-          <div>
-            <h4 class="font-weight-bolder" style="display: inline;vertical-align: middle; letter-spacing: 3px">
-              {{{this.name}}}</h4>
-          </div>
-          <small class="font-weight-bolder">{{{this.date}}}</small>
-        </div>
-        <div class="col-auto m-auto">
-          <p class="text-center font-weight-bolder">{{{this.amount}}}</p>
-        </div>
-
-
-        <div class="col-auto">
-          <a class="btn btn-success font-weight-bolder" href="income/{{{this._id}}}/edit">修 改</a>
-          <form action="/income/{{{this._id}}}/delete?_method=DELETE" method="POST" style="display: inline">
-            <button class="btn btn-danger font-weight-bolder" type="submit">刪 除</button>
-          </form>
-        </div>
-      </div>
-    </div>
-    {{/each}}
   </div>
+  <div class="row">
+    <div class="col-2 m-5">
+      <h3 class="font-weight-bolder" style="letter-spacing: 8px">支出</h3>
+    </div>
+    <div class="col-5 m-5">
+    </div>
+  </div>
+
+
+
+  {{#each recordsList}}
+  <div class="list-group-item mb-2 border-left-0 border-top-0 border-right-0">
+    <div class="row">
+      <span class="m-1" style="color:#ffc107;">
+        {{#if 家居物業}}
+        <i class="fas fa-home fa-2x"></i>
+        {{/if}}
+        {{#if 交通出行}}
+        <i class="fas fa-shuttle-van fa-2x"></i>
+        {{/if}}
+        {{#if 休閒娛樂}}
+        <i class="fas fa-grin-beam fa-2x"></i>
+        {{/if}}
+        {{#if 餐飲食品}}
+        <i class="fas fa-utensils fa-2x"></i>
+        {{/if}}
+        {{#if 其他}}
+        <i class="fas fa-pen fa-2x"></i>
+        {{/if}}
+      </span>
+      <div class="col mr-auto">
+        <div>
+          <h4 class="font-weight-bolder" style="display: inline;vertical-align: middle; letter-spacing: 3px">
+            {{{this.name}}}</h4>
+        </div>
+        <small class="font-weight-bolder">{{{this.date}}}</small>
+      </div>
+      <div class="col m-auto">
+        <p class="text-center font-weight-bolder">{{{this.amount}}}</p>
+      </div>
+
+
+      <div class="col-auto">
+        <a class="btn btn-success font-weight-bolder" href="expense/{{{this._id}}}/edit">修 改</a>
+        <form action="/expense/{{{this._id}}}/delete?_method=DELETE" method="POST" style="display: inline">
+          <button class="btn btn-danger font-weight-bolder" type="submit">刪 除</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+  <div class="m-5">
+    <h3 class="font-weight-bolder" style="letter-spacing: 8px">收入</h3>
+  </div>
+  {{# each incomesList}}
+  <div class="list-group-item mb-2 border-left-0 border-top-0 border-right-0">
+    <div class="row">
+      <span class="m-1" style="color:#70db70;">
+        {{#if 薪水}}
+        <i class="fas fa-envelope-open-text fa-2x"></i>
+        {{/if}}
+        {{#if 家人給}}
+        <i class="fas fa-people-carry fa-2x"></i>
+        {{/if}}
+        {{#if 獎金}}
+        <i class="fas fa-money-check-alt fa-2x"></i>
+        {{/if}}
+        {{#if 其他}}
+        <i class="fas fa-funnel-dollar fa-2x"></i>
+        {{/if}}
+      </span>
+      <div class="col mr-auto">
+        <div>
+          <h4 class="font-weight-bolder" style="display: inline;vertical-align: middle; letter-spacing: 3px">
+            {{{this.name}}}</h4>
+        </div>
+        <small class="font-weight-bolder">{{{this.date}}}</small>
+      </div>
+      <div class="col m-auto">
+        <p class="text-center font-weight-bolder">{{{this.amount}}}</p>
+      </div>
+
+
+      <div class="col-auto">
+        <a class="btn btn-success font-weight-bolder" href="income/{{{this._id}}}/edit">修 改</a>
+        <form action="/income/{{{this._id}}}/delete?_method=DELETE" method="POST" style="display: inline">
+          <button class="btn btn-danger font-weight-bolder" type="submit">刪 除</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>
 </div>
 <div class="position-fixed m-4 justify-content-end float-right"
   style="bottom: 4.6875rem;position: fixed;z-index: 1035;right: .9375rem;bottom: .9375rem">

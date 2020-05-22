@@ -75,6 +75,7 @@ router.post("/filter", (req, res) => {
         totalAmount += records[i].amount;
       }
 
+      renderList["recordCategorySearch"] = categorySearch.recordCategorySearch;
       renderList["totalAmount"] = totalAmount;
     });
   Income.find()
@@ -105,10 +106,9 @@ router.post("/filter", (req, res) => {
         totalIncome += incomes[i].amount;
       }
 
+      renderList["incomeCategorySearch"] = categorySearch.incomeCategorySearch;
       renderList["totalIncome"] = totalIncome;
       renderList["balance"] = renderList.totalIncome - renderList.totalAmount;
-
-      console.log(renderList);
 
       return res.render("index", renderList);
     });

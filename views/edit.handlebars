@@ -26,7 +26,8 @@
             <div class=" form-group row justify-content-center">
               <label for="expenseSelect">類別*</label>
               <div class="col-10">
-                <select class="form-control" id="expenseSelect" name="expenseSelect" value="{{{record.category}}}">
+                <select class="form-control" id="expenseSelect" name="expenseSelect">
+                  <option selected>{{{record.category}}}</option>
                   <option>家居物業</option>
                   <option>交通出行</option>
                   <option>休閒娛樂</option>
