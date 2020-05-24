@@ -68,9 +68,8 @@ router.post("/filter", (req, res) => {
           return item.category === categorySearch.recordCategorySearch;
         });
       }
-      console.log(categorySearch);
-      let totalAmount = 0;
 
+      let totalAmount = 0;
       for (let i = 0; i < records.length; i++) {
         totalAmount += records[i].amount;
       }
@@ -89,10 +88,8 @@ router.post("/filter", (req, res) => {
       categorySearch = {};
       categorySearch.incomeCategorySearch = req.body.incomeCategorySearch;
       if (categorySearch.incomeCategorySearch === "全部") {
-        console.log("In income if");
         renderList["incomesList"] = incomes;
       } else {
-        console.log("In income else");
         renderList["incomesList"] = incomes.filter((item) => {
           if (item.category === categorySearch.incomeCategorySearch) {
             return item;
