@@ -18,6 +18,7 @@ router.post("/new", authenticated, (req, res) => {
     category: req.body.expenseSelect,
     date: req.body.expenseDate,
     amount: req.body.expenseAmount,
+    userId: req.user._id,
   });
   console.log(req.body);
   record.save((err) => {
@@ -27,7 +28,7 @@ router.post("/new", authenticated, (req, res) => {
 });
 //修改支出頁面
 router.get("/:id/edit", authenticated, (req, res) => {
-  Record.findById(req.params.id)
+  Record.findOne({ _id: req.params.id, userId: req.user._id })
     .lean()
     .exec((err, record) => {
       if (err) return console.error(err);
@@ -36,27 +37,33 @@ router.get("/:id/edit", authenticated, (req, res) => {
 });
 //修改支出
 router.put("/:id/edit", authenticated, (req, res) => {
-  Record.findById(req.params.id, (err, record) => {
-    if (err) return console.error(err);
-    (record.name = req.body.expenseName),
-      (record.date = req.body.expenseDate),
-      (record.category = req.body.expenseSelect);
-    record.amount = req.body.expenseAmount;
-    record.save((err) => {
+  Record.findOne(
+    { _id: req.params.id, userId: req.user._id },
+    (err, record) => {
       if (err) return console.error(err);
-      return res.redirect("/");
-    });
-  });
+      (record.name = req.body.expenseName),
+        (record.date = req.body.expenseDate),
+        (record.category = req.body.expenseSelect);
+      record.amount = req.body.expenseAmount;
+      record.save((err) => {
+        if (err) return console.error(err);
+        return res.redirect("/");
+      });
+    }
+  );
 });
 //刪除支出
 router.delete("/:id/delete", authenticated, (req, res) => {
-  Record.findById(req.params.id, (err, record) => {
-    if (err) return console.error(err);
-    record.remove((err) => {
+  Record.findOne(
+    { _id: req.params.id, userId: req.user._id },
+    (err, record) => {
       if (err) return console.error(err);
-      return res.redirect("/");
-    });
-  });
+      record.remove((err) => {
+        if (err) return console.error(err);
+        return res.redirect("/");
+      });
+    }
+  );
 });
 
 module.exports = router;

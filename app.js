@@ -19,6 +19,7 @@ app.use(methodOverride("_method"));
 mongoose.connect("mongodb://localhost/expense", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 const db = mongoose.connection; //連線後拿到connection 物件
 

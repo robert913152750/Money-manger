@@ -18,6 +18,12 @@ const incomeSchema = new Schema({
     type: Number,
     require: true,
   },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    index: true,
+    require: true,
+  },
 });
 
 module.exports = mongoose.model("Income", incomeSchema);

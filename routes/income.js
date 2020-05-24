@@ -13,6 +13,7 @@ router.post("/new", authenticated, (req, res) => {
     category: req.body.incomeSelect,
     date: req.body.incomeDate,
     amount: req.body.incomeAmount,
+    userId: req.user._id,
   });
   console.log(req.body);
   income.save((err) => {
@@ -22,7 +23,7 @@ router.post("/new", authenticated, (req, res) => {
 });
 //修改收入頁面
 router.get("/:id/edit", authenticated, (req, res) => {
-  Income.findById(req.params.id)
+  Income.findOne({ _id: req.params.id, userId: req.user._id })
     .lean()
     .exec((err, income) => {
       if (err) return console.error(err);
@@ -31,27 +32,33 @@ router.get("/:id/edit", authenticated, (req, res) => {
 });
 //修改收入
 router.put("/:id/edit", authenticated, (req, res) => {
-  Income.findById(req.params.id, (err, income) => {
-    if (err) return console.error(err);
-    (income.name = req.body.incomeName),
-      (income.date = req.body.incomeDate),
-      (income.category = req.body.incomeSelect);
-    income.amount = req.body.incomeAmount;
-    income.save((err) => {
+  Income.findOne(
+    { _id: req.params.id, userId: req.user._id },
+    (err, income) => {
       if (err) return console.error(err);
-      return res.redirect("/");
-    });
-  });
+      (income.name = req.body.incomeName),
+        (income.date = req.body.incomeDate),
+        (income.category = req.body.incomeSelect);
+      income.amount = req.body.incomeAmount;
+      income.save((err) => {
+        if (err) return console.error(err);
+        return res.redirect("/");
+      });
+    }
+  );
 });
 //刪除收入
 router.delete("/:id/delete", authenticated, (req, res) => {
-  Income.findById(req.params.id, (err, income) => {
-    if (err) return console.error(err);
-    income.remove((err) => {
+  Income.findOne(
+    { _id: req.params.id, userId: req.user._id },
+    (err, income) => {
       if (err) return console.error(err);
-      return res.redirect("/");
-    });
-  });
+      income.remove((err) => {
+        if (err) return console.error(err);
+        return res.redirect("/");
+      });
+    }
+  );
 });
 
 module.exports = router;

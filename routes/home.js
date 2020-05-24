@@ -7,7 +7,7 @@ const { authenticated } = require("../config/auth");
 //顯示全部資料
 router.get("/", authenticated, (req, res) => {
   let renderList = {};
-  Record.find()
+  Record.find({ userId: req.user._id })
     .lean()
     .exec((err, records) => {
       if (err) return console.error(err);
@@ -26,7 +26,7 @@ router.get("/", authenticated, (req, res) => {
       renderList["totalAmount"] = totalAmount;
     });
 
-  Income.find()
+  Income.find({ userId: req.user._id })
     .lean()
     .exec((err, incomes) => {
       if (err) return console.error(err);
@@ -50,7 +50,7 @@ router.get("/", authenticated, (req, res) => {
 //顯示支出與收入篩選資料
 router.post("/filter", authenticated, (req, res) => {
   let renderList = {};
-  Record.find()
+  Record.find({ userId: req.user._id })
     .lean()
     .exec((err, records) => {
       if (err) return console.error(err);
@@ -78,7 +78,7 @@ router.post("/filter", authenticated, (req, res) => {
       renderList["recordCategorySearch"] = categorySearch.recordCategorySearch;
       renderList["totalAmount"] = totalAmount;
     });
-  Income.find()
+  Income.find({ userId: req.user._id })
     .lean()
     .exec((err, incomes) => {
       if (err) return console.error(err);
