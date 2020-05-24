@@ -22,7 +22,7 @@ module.exports = (passport) => {
     done(null, user.id);
   });
 
-  passport.deserializerUser((id, done) => {
+  passport.deserializeUser((id, done) => {
     User.findById(id)
       .lean()
       .exec((err, user) => {

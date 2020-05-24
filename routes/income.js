@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const Income = require("../models/income");
-
+const { authenticated } = require("../config/auth");
 //新增收入頁面
-router.get("/new/income", (req, res) => {
+router.get("/new/income", authenticated, (req, res) => {
   return res.render("newIncome");
 });
 //新增收入
-router.post("/new", (req, res) => {
+router.post("/new", authenticated, (req, res) => {
   const income = new Income({
     name: req.body.incomeName,
     category: req.body.incomeSelect,
@@ -21,7 +21,7 @@ router.post("/new", (req, res) => {
   });
 });
 //修改收入頁面
-router.get("/:id/edit", (req, res) => {
+router.get("/:id/edit", authenticated, (req, res) => {
   Income.findById(req.params.id)
     .lean()
     .exec((err, income) => {
@@ -30,7 +30,7 @@ router.get("/:id/edit", (req, res) => {
     });
 });
 //修改收入
-router.put("/:id/edit", (req, res) => {
+router.put("/:id/edit", authenticated, (req, res) => {
   Income.findById(req.params.id, (err, income) => {
     if (err) return console.error(err);
     (income.name = req.body.incomeName),
@@ -44,7 +44,7 @@ router.put("/:id/edit", (req, res) => {
   });
 });
 //刪除收入
-router.delete("/:id/delete", (req, res) => {
+router.delete("/:id/delete", authenticated, (req, res) => {
   Income.findById(req.params.id, (err, income) => {
     if (err) return console.error(err);
     income.remove((err) => {

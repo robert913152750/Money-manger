@@ -3,8 +3,9 @@ const router = express.Router();
 const Record = require("../models/record");
 const Income = require("../models/income");
 
+const { authenticated } = require("../config/auth");
 //顯示全部資料
-router.get("/", (req, res) => {
+router.get("/", authenticated, (req, res) => {
   let renderList = {};
   Record.find()
     .lean()
@@ -47,7 +48,7 @@ router.get("/", (req, res) => {
 });
 
 //顯示支出與收入篩選資料
-router.post("/filter", (req, res) => {
+router.post("/filter", authenticated, (req, res) => {
   let renderList = {};
   Record.find()
     .lean()

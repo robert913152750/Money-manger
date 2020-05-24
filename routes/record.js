@@ -1,17 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const Record = require("../models/record");
+const { authenticated } = require("../config/auth");
 //主畫面
-router.get("/", (req, res) => {
+router.get("/", authenticated, (req, res) => {
   return res.redirect("/");
 });
 //新增支出頁面
-router.get("/new/record", (req, res) => {
+router.get("/new/record", authenticated, (req, res) => {
   return res.render("new");
 });
 
 //新增支出
-router.post("/new", (req, res) => {
+router.post("/new", authenticated, (req, res) => {
   const record = new Record({
     name: req.body.expenseName,
     category: req.body.expenseSelect,
@@ -25,7 +26,7 @@ router.post("/new", (req, res) => {
   });
 });
 //修改支出頁面
-router.get("/:id/edit", (req, res) => {
+router.get("/:id/edit", authenticated, (req, res) => {
   Record.findById(req.params.id)
     .lean()
     .exec((err, record) => {
@@ -34,7 +35,7 @@ router.get("/:id/edit", (req, res) => {
     });
 });
 //修改支出
-router.put("/:id/edit", (req, res) => {
+router.put("/:id/edit", authenticated, (req, res) => {
   Record.findById(req.params.id, (err, record) => {
     if (err) return console.error(err);
     (record.name = req.body.expenseName),
@@ -48,7 +49,7 @@ router.put("/:id/edit", (req, res) => {
   });
 });
 //刪除支出
-router.delete("/:id/delete", (req, res) => {
+router.delete("/:id/delete", authenticated, (req, res) => {
   Record.findById(req.params.id, (err, record) => {
     if (err) return console.error(err);
     record.remove((err) => {
