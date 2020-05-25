@@ -1,7 +1,7 @@
 # 收支記帳本
-####兼具支出及收入的簡易記帳軟體
+#### 兼具支出及收入的簡易記帳軟體
 ---
-##功能
+## 功能
 + 使用者可以瀏覽所有支出及收入
 + 使用者可以刪除特定的支出及收入
 + 使用者可以編輯特定的支出及收入
@@ -9,7 +9,7 @@
 + 具備註冊功能，可供多人使用
 + 支援Facebook登錄
 ---
-##配備需求
+## 配備需求
 + [Node.js](https://nodejs.org/en/)
 + [MongoDB](https://www.mongodb.com/)
 ---
@@ -50,3 +50,12 @@ $ node app.js
 帳號: 123@example.com
 密碼: 123
 ```
+## 介面預覽
++ 登入介面
+![login](https://github.com/robert913152750/Money-manger/blob/master/imageForGithub/login.png)
++ 首頁介面
+![index](https://github.com/robert913152750/Money-manger/blob/master/imageForGithub/index.png)
++ 選擇頁面
+![choose](https://github.com/robert913152750/Money-manger/blob/master/imageForGithub/choose.png)
++ 編輯介面
+![edit](https://github.com/robert913152750/Money-manger/blob/master/imageForGithub/edit.png)
