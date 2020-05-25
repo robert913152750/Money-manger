@@ -13,18 +13,33 @@ router.get("/new/record", authenticated, (req, res) => {
 
 //新增支出
 router.post("/new", authenticated, (req, res) => {
-  const record = new Record({
-    name: req.body.expenseName,
-    category: req.body.expenseSelect,
-    date: req.body.expenseDate,
-    amount: req.body.expenseAmount,
-    userId: req.user._id,
-  });
-  console.log(req.body);
-  record.save((err) => {
-    if (err) console.error(err);
-    return res.redirect("/");
-  });
+  const { expenseName, expenseDate, expenseSelect, expenseAmount } = req.body;
+  let errors = [];
+  if (!expenseName || !expenseDate || !expenseSelect || !expenseAmount) {
+    errors.push({ message: "所有欄位為必填" });
+  }
+  if (errors.length > 0) {
+    res.render("new", {
+      errors,
+      expenseName,
+      expenseDate,
+      expenseSelect,
+      expenseAmount,
+    });
+  } else {
+    const record = new Record({
+      name: expenseName,
+      category: expenseSelect,
+      date: expenseDate,
+      amount: expenseAmount,
+      userId: req.user._id,
+    });
+    console.log(req.body);
+    record.save((err) => {
+      if (err) console.error(err);
+      return res.redirect("/");
+    });
+  }
 });
 //修改支出頁面
 router.get("/:id/edit", authenticated, (req, res) => {

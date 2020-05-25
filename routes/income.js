@@ -8,18 +8,32 @@ router.get("/new/income", authenticated, (req, res) => {
 });
 //新增收入
 router.post("/new", authenticated, (req, res) => {
-  const income = new Income({
-    name: req.body.incomeName,
-    category: req.body.incomeSelect,
-    date: req.body.incomeDate,
-    amount: req.body.incomeAmount,
-    userId: req.user._id,
-  });
-  console.log(req.body);
-  income.save((err) => {
-    if (err) console.error(err);
-    return res.redirect("/");
-  });
+  const { incomeName, incomeDate, incomeSelect, incomeAmount } = req.body;
+  let errors = [];
+  if (!incomeName || !incomeDate || !incomeSelect || !incomeAmount) {
+    errors.push({ message: "所有欄位為必填" });
+  }
+  if (errors.length > 0) {
+    res.render("newIncome", {
+      errors,
+      incomeName,
+      incomeDate,
+      incomeSelect,
+      incomeAmount,
+    });
+  } else {
+    const income = new Income({
+      name: incomeName,
+      category: incomeSelect,
+      date: incomeDate,
+      amount: incomeAmount,
+      userId: req.user._id,
+    });
+    income.save((err) => {
+      if (err) console.error(err);
+      return res.redirect("/");
+    });
+  }
 });
 //修改收入頁面
 router.get("/:id/edit", authenticated, (req, res) => {
