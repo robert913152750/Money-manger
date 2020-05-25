@@ -31,11 +31,22 @@ $ npm install
 ```
 $ npm run seeder
 ```
-1. 新增.env檔，並前往[facebooks for developers](https://developers.facebook.com/)獲取必要數據
+5. 新增.env檔，並前往[facebooks for developers](https://developers.facebook.com/)獲取必要數據
 ```
 //請自行至facebooks for developers創建專案
 $ FACEBOOK_ID='創建的facebook開發專案id'
 $ FACEBOOK_SECRET='創建的facebook開發專案secret'
 $ FACEBOOK_CALLBACK=http://localhost:3000/auth/facebook/callback
 ```
-
+6. 執行專案
+```
+$ node app.js
+// 出現以下訊息即開啟成功
+// App is running
+// mongodb connected!
+```
+7. 使用測試帳號登錄或是自行創建帳戶
+```
+帳號: 123@example.com
+密碼: 123
+```
