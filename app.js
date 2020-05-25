@@ -66,7 +66,7 @@ app.use("/expense", require("./routes/record"));
 app.use("/income", require("./routes/income"));
 app.use("/choose", require("./routes/choose"));
 app.use("/users", require("./routes/user"));
-
+app.use("/auth", require("./routes/auths"));
 //listen express
 app.listen(3000, () => {
   console.log("App is running");
