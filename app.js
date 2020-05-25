@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true })); //設定 body-parser
 const methodOverride = require("method-override"); //require method-override
 const session = require("express-session");
 const passport = require("passport");
+const flash = require("connect-flash");
 //tell express use handlebars to be template engine and set "main" for defaulted layout
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
@@ -56,6 +57,16 @@ require("./config/passport")(passport);
 app.use((req, res, next) => {
   res.locals.user = req.user;
   res.locals.isAuthenticated = req.isAuthenticated();
+  next();
+});
+
+//use connect-flash
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  res.locals.isAuthenticated = req.isAuthenticated();
+  res.locals.success_msg = req.flash("success_msg");
+  res.locals.warning_msg = req.flash("warning_msg");
   next();
 });
 //require Record model
