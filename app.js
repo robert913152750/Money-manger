@@ -1,6 +1,10 @@
 //require express and some base setting
 const express = require("express");
 const app = express();
+// 判別開發環境
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 const mongoose = require("mongoose");
 const exphbs = require("express-handlebars"); //require express-handlebars
 const bodyParser = require("body-parser"); //require body-parser
