@@ -21,7 +21,7 @@ app.set("view engine", "handlebars");
 app.use(methodOverride("_method"));
 
 //setting mongoDB
-mongoose.connect("mongodb://localhost/expense", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/expense", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -83,6 +83,6 @@ app.use("/choose", require("./routes/choose"));
 app.use("/users", require("./routes/user"));
 app.use("/auth", require("./routes/auths"));
 //listen express
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("App is running");
 });
