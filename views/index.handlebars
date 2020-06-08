@@ -16,17 +16,24 @@
 
   <div class="list group">
     <div class="row mt-5">
-      <div class="col"></div>
-      <div class="col">
+      <div class="col-3"></div>
+      <div class="col-6">
         <form action="/filter" method="POST">
           <div class="form-group row">
+            <div class="col-auto">
+              <input type="month" class="custom-select font-weight-bolder" name="dateSearch" id="dateSearch">
+
+
+
+              </input>
+            </div>
             <div class="col">
               <select class="custom-select font-weight-bolder" name="recordCategorySearch" id="recordCategorySearch"
                 onchange="this.form.submit()">
                 {{#if recordCategorySearch}}
                 <option class="font-weight-bolder">{{{recordCategorySearch}}}</option>
                 {{else}}
-                <option class="font-weight-bolder" selected disabled>篩選支出類別</option>
+                <option class="font-weight-bolder" selected disabled>支出類別</option>
                 {{/if}}
 
                 <option class="font-weight-bolder">全部</option>
@@ -44,7 +51,7 @@
                 {{#if incomeCategorySearch}}
                 <option class="font-weight-bolder">{{{incomeCategorySearch}}}</option>
                 {{else}}
-                <option class="font-weight-bolder" selected disabled>篩選收入類別</option>
+                <option class="font-weight-bolder" selected disabled>收入類別</option>
                 {{/if}}
 
                 <option class="font-weight-bolder">全部</option>
@@ -57,7 +64,7 @@
           </div>
         </form>
       </div>
-      <div class="col"></div>
+      <div class="col-3"></div>
     </div>
   </div>
   {{> messages}}
