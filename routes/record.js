@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Record = require("../models/record");
+const moment = require("moment");
 const { authenticated } = require("../config/auth");
 //主畫面
 router.get("/", authenticated, (req, res) => {
@@ -54,6 +55,7 @@ router.get("/:id/edit", authenticated, (req, res) => {
     .lean()
     .exec((err, record) => {
       if (err) return console.error(err);
+      record.date = moment(record.date).format("YYYY-MM-DD");
       return res.render("edit", { record: record });
     });
 });
@@ -63,9 +65,10 @@ router.put("/:id/edit", authenticated, (req, res) => {
     { _id: req.params.id, userId: req.user._id },
     (err, record) => {
       if (err) return console.error(err);
-      (record.name = req.body.expenseName),
-        (record.date = req.body.expenseDate),
-        (record.category = req.body.expenseSelect);
+      record.name = req.body.expenseName;
+      record.date = req.body.expenseDate;
+      record.category = req.body.expenseSelect;
+      record.merchant = req.body.expenseMerchant;
       record.amount = req.body.expenseAmount;
       record.save((err) => {
         if (err) return console.error(err);

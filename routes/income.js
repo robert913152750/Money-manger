@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Income = require("../models/income");
+const moment = require("moment");
 const { authenticated } = require("../config/auth");
 //新增收入頁面
 router.get("/new/income", authenticated, (req, res) => {
@@ -48,6 +49,7 @@ router.get("/:id/edit", authenticated, (req, res) => {
     .lean()
     .exec((err, income) => {
       if (err) return console.error(err);
+      income.date = moment(income.date).format("YYYY-MM-DD");
       return res.render("incomeEdit", { income: income });
     });
 });
@@ -57,9 +59,10 @@ router.put("/:id/edit", authenticated, (req, res) => {
     { _id: req.params.id, userId: req.user._id },
     (err, income) => {
       if (err) return console.error(err);
-      (income.name = req.body.incomeName),
-        (income.date = req.body.incomeDate),
-        (income.category = req.body.incomeSelect);
+      income.name = req.body.incomeName;
+      income.date = req.body.incomeDate;
+      income.category = req.body.incomeSelect;
+      income.merchant = req.body.incomeMerchant;
       income.amount = req.body.incomeAmount;
       income.save((err) => {
         if (err) return console.error(err);
