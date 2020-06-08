@@ -81,7 +81,11 @@ router.post("/filter", authenticated, (req, res) => {
 
       let totalAmount = 0;
       for (let i = 0; i < records.length; i++) {
+        //計算支出總價
         totalAmount += records[i].amount;
+        //格式化日期
+        let oldDate = records[i].date;
+        records[i].date = moment(oldDate).format("YYYY-MM-DD");
       }
 
       renderList["recordCategorySearch"] = categorySearch.recordCategorySearch;
@@ -110,7 +114,11 @@ router.post("/filter", authenticated, (req, res) => {
       let totalIncome = 0;
 
       for (let i = 0; i < incomes.length; i++) {
+        //計算收入總價
         totalIncome += incomes[i].amount;
+        //格式化日期
+        let oldDate = incomes[i].date;
+        incomes[i].date = moment(oldDate).format("YYYY-MM-DD");
       }
 
       renderList["incomeCategorySearch"] = categorySearch.incomeCategorySearch;

@@ -13,10 +13,16 @@ router.get("/new/record", authenticated, (req, res) => {
 
 //新增支出
 router.post("/new", authenticated, (req, res) => {
-  const { expenseName, expenseDate, expenseSelect, expenseAmount } = req.body;
+  const {
+    expenseName,
+    expenseDate,
+    expenseSelect,
+    expenseAmount,
+    expenseMerchant,
+  } = req.body;
   let errors = [];
   if (!expenseName || !expenseDate || !expenseSelect || !expenseAmount) {
-    errors.push({ message: "所有欄位為必填" });
+    errors.push({ message: "除「商家」外所有欄位為必填" });
   }
   if (errors.length > 0) {
     res.render("new", {
@@ -32,6 +38,7 @@ router.post("/new", authenticated, (req, res) => {
       category: expenseSelect,
       date: expenseDate,
       amount: expenseAmount,
+      merchant: expenseMerchant,
       userId: req.user._id,
     });
     console.log(req.body);

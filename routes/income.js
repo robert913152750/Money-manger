@@ -8,10 +8,16 @@ router.get("/new/income", authenticated, (req, res) => {
 });
 //新增收入
 router.post("/new", authenticated, (req, res) => {
-  const { incomeName, incomeDate, incomeSelect, incomeAmount } = req.body;
+  const {
+    incomeName,
+    incomeDate,
+    incomeSelect,
+    incomeAmount,
+    incomeMerchant,
+  } = req.body;
   let errors = [];
   if (!incomeName || !incomeDate || !incomeSelect || !incomeAmount) {
-    errors.push({ message: "所有欄位為必填" });
+    errors.push({ message: "除「商家」外所有欄位為必填" });
   }
   if (errors.length > 0) {
     res.render("newIncome", {
@@ -27,6 +33,7 @@ router.post("/new", authenticated, (req, res) => {
       category: incomeSelect,
       date: incomeDate,
       amount: incomeAmount,
+      merchant: incomeMerchant,
       userId: req.user._id,
     });
     income.save((err) => {
