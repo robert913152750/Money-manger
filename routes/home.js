@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Record = require("../models/record");
 const Income = require("../models/income");
+const moment = require("moment");
 
 const { authenticated } = require("../config/auth");
 //顯示全部資料
@@ -19,7 +20,11 @@ router.get("/", authenticated, (req, res) => {
       });
 
       for (let i = 0; i < records.length; i++) {
+        //計算支出總價
         totalAmount += records[i].amount;
+        //格式化日期
+        let oldDate = records[i].date;
+        records[i].date = moment(oldDate).format("YYYY-MM-DD");
       }
 
       renderList["recordsList"] = records;
@@ -38,7 +43,11 @@ router.get("/", authenticated, (req, res) => {
       });
 
       for (let i = 0; i < incomes.length; i++) {
+        //計算收入總價
         totalIncome += incomes[i].amount;
+        //格式化日期
+        let oldDate = incomes[i].date;
+        incomes[i].date = moment(oldDate).format("YYYY-MM-DD");
       }
       renderList["incomesList"] = incomes;
       renderList["totalIncome"] = totalIncome;
