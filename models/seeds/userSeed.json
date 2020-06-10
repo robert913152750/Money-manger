@@ -2,8 +2,8 @@
   "results": [
     {
       "name": "User1",
-      "email": "123@example.com",
-      "password": "123"
+      "email": "user1@example.com",
+      "password": "123456"
     }
   ]
 }

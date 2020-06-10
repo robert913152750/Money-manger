@@ -10,6 +10,7 @@ const bcrypt = require("bcryptjs");
 mongoose.connect("mongodb://localhost/expense", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 const db = mongoose.connection;
 
@@ -37,25 +38,52 @@ db.once("open", () => {
     });
   });
 
-  for (i = 0; i < listRecord.length; i++) {
-    Record.create({
-      name: listRecord[i].name,
-      category: listRecord[i].category,
-      date: listRecord[i].date,
-      amount: listRecord[i].amount,
-      userId: user1._id,
-    });
-  }
-
-  for (i = 0; i < listIncome.length; i++) {
-    Income.create({
-      name: listIncome[i].name,
-      category: listIncome[i].category,
-      date: listIncome[i].date,
-      amount: listIncome[i].amount,
-      userId: user1._id,
-    });
-  }
+  // return Promise.all(Array.from(
+  //   { length: 10 },
+  //   (_, i) => Todo.create({ name: `name-${i}`, userId })
+  // ))
+  Promise.all(
+    Array.from({ length: listRecord.length }, (_, i) =>
+      Record.create({
+        name: listRecord[i].name,
+        category: listRecord[i].category,
+        date: listRecord[i].date,
+        amount: listRecord[i].amount,
+        userId: user1._id,
+      })
+    )
+  ).then;
+  // for (i = 0; i < listRecord.length; i++) {
+  //   Record.create({
+  //     name: listRecord[i].name,
+  //     category: listRecord[i].category,
+  //     date: listRecord[i].date,
+  //     amount: listRecord[i].amount,
+  //     userId: user1._id,
+  //   });
+  // }
+  Promise.all(
+    Array.from({ length: listIncome.length }, (_, i) =>
+      Income.create({
+        name: listIncome[i].name,
+        category: listIncome[i].category,
+        date: listIncome[i].date,
+        amount: listIncome[i].amount,
+        userId: user1._id,
+      })
+    )
+  ).then(() => {
+    console.log("data seed has already create!");
+    process.exit();
+  });
 });
-
-console.log("data seed has already create!");
+//   for (i = 0; i < listIncome.length; i++) {
+//     Income.create({
+//       name: listIncome[i].name,
+//       category: listIncome[i].category,
+//       date: listIncome[i].date,
+//       amount: listIncome[i].amount,
+//       userId: user1._id,
+//     });
+//   }
+// })
