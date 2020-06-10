@@ -82,7 +82,7 @@ $ node app.js
 7. 使用測試帳號登錄或是自行創建帳戶
 
 ```
-帳號: 123@example.com
+帳號: user1@example.com
 密碼: 123456
 ```
 
